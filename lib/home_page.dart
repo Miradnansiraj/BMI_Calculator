@@ -20,9 +20,13 @@ class _MyHomePageState extends State<MyHomePage> {
   int age = 18;
   int weight = 80;
   bool isMale = false, isFemale = false;
+
+  //Key needed to display SnackBar inside onPressed
+  final _scaffoldKey = GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
       appBar: AppBar(
         title: Center(child: Text(widget.title, textAlign: TextAlign.center)),
         elevation: 14,
@@ -277,8 +281,21 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ),
               onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => ResultPage()));
+                if (isMale == isFemale) {
+                  //Display error if gender isnt selected
+                  _scaffoldKey.currentState.showSnackBar(SnackBar(
+                    content: Text(
+                      'Please select a gender',
+                      style: TextStyle(fontSize: 28, color: Colors.white),
+                      textAlign: TextAlign.center,
+                    ),
+                    duration: Duration(seconds: 2),
+                    backgroundColor: Theme.of(context).accentColor,
+                  ));
+                } else {
+                  Navigator.pushNamed(context, ResultPage.routeName,
+                      arguments: DataExchanger(isMale, height, weight, age));
+                }
               },
               splashColor: Colors.transparent,
               highlightColor: Colors.transparent,
@@ -326,4 +343,11 @@ class _MyHomePageState extends State<MyHomePage> {
       age > 1 ? age-- : null;
     }
   }
+}
+
+//Class used to exchange data between 2 screens
+class DataExchanger {
+  bool isMale;
+  int height, weight, age;
+  DataExchanger(this.isMale, this.height, this.weight, this.age);
 }
