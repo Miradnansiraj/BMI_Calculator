@@ -1,3 +1,4 @@
+import 'package:bmi_calculator/result_page.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'gender_card.dart';
@@ -5,6 +6,7 @@ import 'custom_card.dart';
 import 'constants.dart';
 
 enum Gender { Male, Female }
+enum Operation { Increment, Decrement }
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
@@ -14,7 +16,9 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int height = 100;
+  int height = 170;
+  int age = 18;
+  int weight = 80;
   bool isMale = false, isFemale = false;
   @override
   Widget build(BuildContext context) {
@@ -123,18 +127,162 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               )),
           Expanded(
+              //The row for weight and age
               flex: 3,
               child: Row(
                 mainAxisSize: MainAxisSize.max,
                 children: <Widget>[
-                  Expanded(child: CustomCard(colour: activeCardColor)),
-                  Expanded(child: CustomCard(colour: activeCardColor)),
+                  Expanded(
+                      //Card for Weight
+                      child: CustomCard(
+                    colour: activeCardColor,
+                    cardContent: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      mainAxisSize: MainAxisSize.max,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: <Widget>[
+                        Text(
+                          'WEIGHT',
+                          style: labelTextStyle,
+                        ),
+                        Text(
+                          weight.toString(),
+                          style: numberTextStyle,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          mainAxisSize: MainAxisSize.max,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: <Widget>[
+                            Expanded(
+                              child: Container(
+                                child: IconButton(
+                                  icon: Icon(Icons.remove),
+                                  iconSize: 48,
+                                  onPressed: () {
+                                    setState(() {
+                                      _weightChange(
+                                          operation: Operation.Decrement);
+                                    });
+                                  },
+                                  color: Colors.white,
+                                ),
+                                decoration: ShapeDecoration(
+                                  shape: CircleBorder(),
+                                  color: Color(0x158D8E98),
+                                ),
+                              ),
+                            ),
+                            Expanded(
+                              child: Container(
+                                child: IconButton(
+                                  icon: Icon(Icons.add),
+                                  iconSize: 48,
+                                  onPressed: () {
+                                    setState(() {
+                                      _weightChange(
+                                          operation: Operation.Increment);
+                                    });
+                                  },
+                                  color: Colors.white,
+                                ),
+                                decoration: ShapeDecoration(
+                                  shape: CircleBorder(),
+                                  color: Color(0x158D8E98),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  )),
+                  Expanded(
+                      //Card for Age
+                      child: CustomCard(
+                    colour: activeCardColor,
+                    cardContent: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      mainAxisSize: MainAxisSize.max,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: <Widget>[
+                        Text(
+                          'AGE',
+                          style: labelTextStyle,
+                        ),
+                        Text(
+                          age.toString(),
+                          style: numberTextStyle,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          mainAxisSize: MainAxisSize.max,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: <Widget>[
+                            Expanded(
+                              child: Container(
+                                child: IconButton(
+                                  icon: Icon(Icons.remove),
+                                  iconSize: 48,
+                                  onPressed: () {
+                                    setState(() {
+                                      _ageChange(
+                                          operation: Operation.Decrement);
+                                    });
+                                  },
+                                  color: Colors.white,
+                                ),
+                                decoration: ShapeDecoration(
+                                  shape: CircleBorder(),
+                                  color: Color(0x158D8E98),
+                                ),
+                              ),
+                            ),
+                            Expanded(
+                              child: Container(
+                                child: IconButton(
+                                  icon: Icon(Icons.add),
+                                  iconSize: 48,
+                                  onPressed: () {
+                                    setState(() {
+                                      _ageChange(
+                                          operation: Operation.Increment);
+                                    });
+                                  },
+                                  color: Colors.white,
+                                ),
+                                decoration: ShapeDecoration(
+                                  shape: CircleBorder(),
+                                  color: Color(0x158D8E98),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  )),
                 ],
               )),
           Expanded(
+              //The Calculate button
               child: Container(
             margin: EdgeInsets.fromLTRB(0, 8.0, 0, 0),
             color: Theme.of(context).accentColor,
+            child: FlatButton(
+              child: Center(
+                child: Text(
+                  'Calculate your BMI',
+                  style: TextStyle(fontSize: 32, fontWeight: FontWeight.w400),
+                ),
+              ),
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => ResultPage()));
+              },
+              splashColor: Colors.transparent,
+              highlightColor: Colors.transparent,
+            ),
           )),
         ],
       ),
@@ -161,5 +309,21 @@ class _MyHomePageState extends State<MyHomePage> {
   Color _femaleCardSelected() {
     if (isFemale) return activeCardColor;
     return inactiveCardColor;
+  }
+
+  _weightChange({@required Operation operation}) {
+    if (operation == Operation.Increment) {
+      weight < 650 ? weight++ : null;
+    } else {
+      weight > 2 ? weight-- : null;
+    }
+  }
+
+  _ageChange({@required Operation operation}) {
+    if (operation == Operation.Increment) {
+      age < 150 ? age++ : null;
+    } else {
+      age > 1 ? age-- : null;
+    }
   }
 }
