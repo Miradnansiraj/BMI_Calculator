@@ -145,58 +145,58 @@ class _MyHomePageState extends State<MyHomePage> {
                       mainAxisSize: MainAxisSize.max,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: <Widget>[
-                        Text(
-                          'WEIGHT',
-                          style: labelTextStyle,
+                        Expanded(
+                          child: Text(
+                            'WEIGHT (KG)',
+                            style: labelTextStyle,
+                          ),
                         ),
-                        Text(
-                          weight.toString(),
-                          style: numberTextStyle,
+                        Expanded(
+                          flex: 3,
+                          child: Text(
+                            weight.toString(),
+                            style: numberTextStyle,
+                          ),
                         ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          mainAxisSize: MainAxisSize.max,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: <Widget>[
-                            Expanded(
-                              child: Container(
-                                child: IconButton(
-                                  icon: Icon(Icons.remove),
-                                  iconSize: 48,
-                                  onPressed: () {
-                                    setState(() {
-                                      _weightChange(
-                                          operation: Operation.Decrement);
-                                    });
-                                  },
-                                  color: Colors.white,
-                                ),
-                                decoration: ShapeDecoration(
-                                  shape: CircleBorder(),
-                                  color: Color(0x158D8E98),
+                        Expanded(
+                          flex: 2,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            mainAxisSize: MainAxisSize.max,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: <Widget>[
+                              Expanded(
+                                child: Center(
+                                  child: IconButton(
+                                    icon: Icon(Icons.remove),
+                                    iconSize: 40,
+                                    onPressed: () {
+                                      setState(() {
+                                        _weightChange(
+                                            operation: Operation.Decrement);
+                                      });
+                                    },
+                                    color: Colors.white,
+                                  ),
                                 ),
                               ),
-                            ),
-                            Expanded(
-                              child: Container(
-                                child: IconButton(
-                                  icon: Icon(Icons.add),
-                                  iconSize: 48,
-                                  onPressed: () {
-                                    setState(() {
-                                      _weightChange(
-                                          operation: Operation.Increment);
-                                    });
-                                  },
-                                  color: Colors.white,
-                                ),
-                                decoration: ShapeDecoration(
-                                  shape: CircleBorder(),
-                                  color: Color(0x158D8E98),
+                              Expanded(
+                                child: Center(
+                                  child: IconButton(
+                                    icon: Icon(Icons.add),
+                                    iconSize: 40,
+                                    onPressed: () {
+                                      setState(() {
+                                        _weightChange(
+                                            operation: Operation.Increment);
+                                      });
+                                    },
+                                    color: Colors.white,
+                                  ),
                                 ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ],
                     ),
@@ -210,24 +210,30 @@ class _MyHomePageState extends State<MyHomePage> {
                       mainAxisSize: MainAxisSize.max,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: <Widget>[
-                        Text(
-                          'AGE',
-                          style: labelTextStyle,
+                        Expanded(
+                          child: Text(
+                            'AGE',
+                            style: labelTextStyle,
+                          ),
                         ),
-                        Text(
-                          age.toString(),
-                          style: numberTextStyle,
+                        Expanded(
+                          flex: 3,
+                          child: Text(
+                            age.toString(),
+                            style: numberTextStyle,
+                          ),
                         ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          mainAxisSize: MainAxisSize.max,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: <Widget>[
-                            Expanded(
-                              child: Container(
+                        Expanded(
+                          flex: 2,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            mainAxisSize: MainAxisSize.max,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: <Widget>[
+                              Expanded(
                                 child: IconButton(
                                   icon: Icon(Icons.remove),
-                                  iconSize: 48,
+                                  iconSize: 40,
                                   onPressed: () {
                                     setState(() {
                                       _ageChange(
@@ -236,17 +242,11 @@ class _MyHomePageState extends State<MyHomePage> {
                                   },
                                   color: Colors.white,
                                 ),
-                                decoration: ShapeDecoration(
-                                  shape: CircleBorder(),
-                                  color: Color(0x158D8E98),
-                                ),
                               ),
-                            ),
-                            Expanded(
-                              child: Container(
+                              Expanded(
                                 child: IconButton(
                                   icon: Icon(Icons.add),
-                                  iconSize: 48,
+                                  iconSize: 40,
                                   onPressed: () {
                                     setState(() {
                                       _ageChange(
@@ -255,13 +255,9 @@ class _MyHomePageState extends State<MyHomePage> {
                                   },
                                   color: Colors.white,
                                 ),
-                                decoration: ShapeDecoration(
-                                  shape: CircleBorder(),
-                                  color: Color(0x158D8E98),
-                                ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ],
                     ),

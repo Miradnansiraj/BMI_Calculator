@@ -1,3 +1,4 @@
+import 'package:bmi_calculator/brain.dart';
 import 'package:bmi_calculator/constants.dart';
 import 'package:bmi_calculator/custom_card.dart';
 import 'package:bmi_calculator/home_page.dart';
@@ -5,11 +6,10 @@ import 'package:flutter/material.dart';
 
 class ResultPage extends StatelessWidget {
   static const routeName = '/resultPage';
-  String result = 'Normal';
-  double bmi = 10.0;
   @override
   Widget build(BuildContext context) {
     final DataExchanger args = ModalRoute.of(context).settings.arguments;
+    Brain brain = Brain(height: args.height, weight: args.weight);
 
     return Scaffold(
       appBar: AppBar(
@@ -38,16 +38,13 @@ class ResultPage extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: <Widget>[
+                      brain.getText(),
                       Text(
-                        result,
-                        style: greenTextStyle,
-                      ),
-                      Text(
-                        bmi.toString(),
+                        brain.calculateBMI().toStringAsFixed(2),
                         style: resultNumberTextStyle,
                       ),
                       Text(
-                        '''Normal BMI according to your criteria''',
+                        brain.getPara(),
                         style: paraTextStyle,
                         textAlign: TextAlign.center,
                       ),

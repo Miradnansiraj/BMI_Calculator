@@ -5,6 +5,8 @@ const Color activeCardColor = Color(0xFF1D1E33);
 const Color inactiveCardColor = Color(0xFF111328);
 //Colors of result
 const Color green = Color(0xFF24D876);
+const Color yellow = Color(0xFFffe23d);
+const Color red = Color(0xFFff3b3b);
 
 //small labels in the app
 const labelTextStyle = TextStyle(
@@ -26,4 +28,12 @@ const paraTextStyle = TextStyle(fontSize: 22, color: Color(0xFF8D8E98));
 const greenTextStyle = TextStyle(
   fontSize: 28,
   color: green,
+);
+const yellowTextStyle = TextStyle(
+  fontSize: 28,
+  color: yellow,
+);
+const redTextStyle = TextStyle(
+  fontSize: 28,
+  color: red,
 );
