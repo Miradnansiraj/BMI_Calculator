@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
       routes: {
         ResultPage.routeName: (context) => ResultPage(),
       },
-      home: MyHomePage(title: 'BMI Calculator'),
+      home: SafeArea(child: MyHomePage(title: 'BMI Calculator')),
     );
   }
 }
